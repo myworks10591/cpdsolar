@@ -103,7 +103,7 @@
     
     <div class="section" id="contact">
         <h2>Contact Us</h2>
-        <p>Phone: 9621050421</p>
+        <p>Mobile: 9621050421</p>
         <p>Address: AN 702, DAFI, VARANASI, Varanasi, Varanasi, Uttar
 Pradesh, 221011</p>
     </div>
