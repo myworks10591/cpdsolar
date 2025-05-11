@@ -334,7 +334,6 @@ class CustomerController extends Controller
             return $customer->due_amount > 0;
         })->values(); // reset keys
 
-        
         return view('admin.customer_statuses.PendingCustomerList', compact('customers'));
 }
 
