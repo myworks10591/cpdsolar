@@ -1,0 +1,103 @@
+@extends('adminlte::page')
+
+@section('title', 'Pending account number')
+
+@section('content_header')
+    <h1>Pending account number:-({{count($customers)}})</h1>
+@stop
+
+@section('content')
+    
+
+    <div class="table-responsive">
+        <table id="pending-installations-table" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Sr No.</th>
+                    <th>Operator Name</th>
+                    <th>Group Name</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>District</th>
+                    <th>Electricity Id</th>
+                    <th>Kw</th>
+                    <th>Bank name</th>
+                    <th>Ifsc code</th>
+                    <th>Branch name</th>
+                    <th>J S date</th>
+                    <th>Remarks</th>
+                    <th>Updated date</th>
+                    <th>Action</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($customers as $index => $customer)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ optional($customer->user)->name }}</td>
+                        <td>{{ optional($customer->group)->name }}</td>
+                        <td>{{ $customer->name }}</td>
+                        <td>{{ $customer->email }}</td>
+                        <td>{{ $customer->mobile_no }}</td>
+                        <td>{{ $customer->district }}</td>
+                        <td>{{ $customer->electric_account_id }}</td>
+                        <td>{{ $customer->kw }}</td>
+                        <td>{{ $customer->jan_samarth_bank_name }}</td>
+                        <td>{{ $customer->jan_samarth_ifsc_code }}</td>
+                        <td>{{ $customer->jan_samarth_bank_name }}</td>
+                        <td>{{ $customer->jan_samarth_date }}</td>
+                        <td>{{ $customer->remarks }}</td>
+                        <td>{{ $customer->updated_at }}</td>
+                        <td>
+                            <a href="{{ route('admin.customers.edit', $customer->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+@stop
+
+@section('css')
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap4.min.css">
+@stop
+
+@section('js')
+    <!-- DataTables + Buttons Scripts -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#pending-installations-table').DataTable({
+                responsive: true,
+                autoWidth: false,
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Pending Installations',
+                        className: 'btn-success', // ✅ makes it green using Bootstrap
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                      }
+                ],
+                language: {
+                    search: "Search:",
+                    lengthMenu: "Show _MENU_ entries",
+                    info: "Showing _START_ to _END_ of _TOTAL_ entries",
+                    zeroRecords: "No matching records found",
+                }
+            });
+        });
+    </script>
+@stop
