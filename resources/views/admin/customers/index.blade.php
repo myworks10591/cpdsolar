@@ -24,6 +24,7 @@
                     <th>IFSC Code</th>
                     <th>Electricity Id</th>
                     <th>Kw</th>
+                    <th>Account Number</th>
                     <th>Total Amount</th>
                     <th>Due Amount</th>
                     <th>Remarks</th>
@@ -44,6 +45,7 @@
                         <td>{{ $customer->jan_samarth_ifsc_code }}</td>
                         <td>{{ $customer->electric_account_id }}</td>
                         <td>{{ $customer->kw }}</td>
+                        <td>{{ $customer->account_no }}</td>
                         <td>{{ number_format($customer->total_amount, 2) }}</td>
                         <td>{{ number_format($customer->due_amount, 2) }}</td>
                         <td>{{ $customer->remarks }}</td>
